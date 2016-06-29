@@ -145,6 +145,8 @@ public class Principal extends JFrame {
 				RelVenda relVenda = new RelVenda();
 				relVenda.setVisible(true);
 				relVenda.setLocationRelativeTo(null);
+				relVenda.setExtendedState(relVenda.getExtendedState()
+						| JFrame.MAXIMIZED_BOTH);
 
 			}
 		});

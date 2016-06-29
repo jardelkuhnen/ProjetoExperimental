@@ -25,6 +25,33 @@ public class BuscaVendaModel extends AbstractTableModel {
 	}
 
 	@Override
+	public String getColumnName(int col) {
+
+		switch (col) {
+		case 0:
+			return "N. Nota";
+		case 1:
+			return "Cliente";
+		case 2:
+			return "Produto";
+		case 3:
+			return "Quantidade";
+		case 4:
+			return "Vlr. Total";
+		case 5:
+			return "Vlr. Pagamento";
+		case 6:
+			return "Vlr. Troco";
+		case 7:
+			return "Data/Hora Venda";
+		default:
+			break;
+		}
+		return null;
+	}
+
+	
+	@Override
 	public Object getValueAt(int row, int col) {
 
 		Venda v = listaVenda.get(row);
@@ -51,31 +78,6 @@ public class BuscaVendaModel extends AbstractTableModel {
 		return "Erro em colunas";
 	}
 
-	@Override
-	public String getColumnName(int col) {
-
-		switch (col) {
-		case 0:
-			return "N. Nota";
-		case 1:
-			return "Cliente";
-		case 2:
-			return "Produto";
-		case 3:
-			return "Quantidade";
-		case 4:
-			return "Vlr. Total";
-		case 5:
-			return "Vlr. Pagamento";
-		case 6:
-			return "Vlr. Troco";
-		case 7:
-			return "Data/Hora Venda";
-		default:
-			break;
-		}
-		return null;
-	}
 
 	public Venda getvenda(int selectedRow) {
 

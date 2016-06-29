@@ -43,6 +43,7 @@ public class RelVenda extends JFrame {
 	static List<Produto> listaProd = new ArrayList<Produto>();
 	private JTable table;
 	private BuscaVendaModel model = new BuscaVendaModel();
+	private RelVenda relVenda;
 
 	public void preencherListas() throws SQLException {
 
@@ -57,7 +58,7 @@ public class RelVenda extends JFrame {
 	 */
 	public RelVenda() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 453, 383);
+		setBounds(100, 100, 600, 343);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane
@@ -72,23 +73,23 @@ public class RelVenda extends JFrame {
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0,
 				0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-		
-				JLabel lblRelatrioDeClientes = new JLabel("Relat\u00F3rio de Vendas");
-				lblRelatrioDeClientes.setForeground(new Color(0, 0, 128));
-				lblRelatrioDeClientes.setFont(new Font("Tahoma", Font.BOLD
-						| Font.ITALIC, 18));
-				GridBagConstraints gbc_lblRelatrioDeClientes = new GridBagConstraints();
-				gbc_lblRelatrioDeClientes.anchor = GridBagConstraints.NORTH;
-				gbc_lblRelatrioDeClientes.insets = new Insets(0, 0, 5, 0);
-				gbc_lblRelatrioDeClientes.gridwidth = 6;
-				gbc_lblRelatrioDeClientes.gridx = 0;
-				gbc_lblRelatrioDeClientes.gridy = 0;
-				contentPane.add(lblRelatrioDeClientes, gbc_lblRelatrioDeClientes);
+
+		JLabel lblRelatrioDeClientes = new JLabel("Relat\u00F3rio de Vendas");
+		lblRelatrioDeClientes.setForeground(new Color(0, 0, 128));
+		lblRelatrioDeClientes.setFont(new Font("Tahoma", Font.BOLD
+				| Font.ITALIC, 18));
+		GridBagConstraints gbc_lblRelatrioDeClientes = new GridBagConstraints();
+		gbc_lblRelatrioDeClientes.anchor = GridBagConstraints.NORTH;
+		gbc_lblRelatrioDeClientes.insets = new Insets(0, 0, 5, 0);
+		gbc_lblRelatrioDeClientes.gridwidth = 6;
+		gbc_lblRelatrioDeClientes.gridx = 0;
+		gbc_lblRelatrioDeClientes.gridy = 0;
+		contentPane.add(lblRelatrioDeClientes, gbc_lblRelatrioDeClientes);
 
 		table = new JTable();
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridheight = 9;
-		gbc_table.gridwidth = 5;
+		gbc_table.gridwidth = 6;
 		gbc_table.fill = GridBagConstraints.BOTH;
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 1;
@@ -98,7 +99,7 @@ public class RelVenda extends JFrame {
 
 		try {
 			preencherListas();
-		
+
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao buscar dados!!!");
 			e.printStackTrace();
