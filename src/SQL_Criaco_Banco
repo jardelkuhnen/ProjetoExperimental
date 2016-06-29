@@ -1,0 +1,43 @@
+
+CREATE TABLE Cliente
+(id int not null AUTO_INCREMENT,
+nome varchar(100) not null,
+telefone varchar(50),
+endereco varchar(50),
+cidade varchar(50),
+estado int,
+genero varchar(20),
+email varchar(50));
+
+
+CREATE TABLE Produto
+(id int not null AUTO_INCREMENT,
+codBarras int not null,
+descricao varchar(50) not null,
+genero varchar(30),
+unidade varchar(30),
+quantidade int,
+custo bigint not null,
+margemLucro bigint not null);
+
+
+CREATE TABLE Usuario
+(idCliente int not null,
+idUs int not null,
+usuario varchar(50),
+senha varchar(25));
+
+
+create table Venda(
+nNota int not null,
+cliente varchar(50),
+produto varchar(50),
+qtd int,
+valorVenda bigint,
+valorPagamento bigint,
+valortroco bigint,
+dataHora varchar(30));
+
+
+
+
