@@ -122,6 +122,8 @@ public class Principal extends JFrame {
 				RelCliente relCliente = new RelCliente();
 				relCliente.setVisible(true);
 				relCliente.setLocationRelativeTo(null);
+				relCliente.setExtendedState(relCliente.getExtendedState()
+						| JFrame.MAXIMIZED_BOTH);
 			}
 		});
 		mnRelatrios.add(mntmNewMenuItem);
@@ -133,6 +135,8 @@ public class Principal extends JFrame {
 				RelProduto relProduto = new RelProduto();
 				relProduto.setVisible(true);
 				relProduto.setLocationRelativeTo(null);
+				relProduto.setExtendedState(relProduto.getExtendedState()
+						| JFrame.MAXIMIZED_BOTH);
 
 			}
 		});

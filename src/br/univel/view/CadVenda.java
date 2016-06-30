@@ -32,6 +32,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+import br.univel.controller.ProdutoContoller;
 import br.univel.controller.VendaController;
 import br.univel.dao.ClienteDao;
 import br.univel.dao.ProdutoDao;
@@ -59,6 +60,7 @@ public class CadVenda extends JFrame {
 	private JPanel panel;
 	private JTable table;
 	private JTextField txtProduto;
+	private String qtdDigitada = "";
 
 	public CadVenda() {
 		setTitle("Venda");
@@ -334,11 +336,19 @@ public class CadVenda extends JFrame {
 		if (indexProd == 0) {
 			indexProd = indexProd + 1;
 		}
+
 		int qtd = Integer.parseInt(txtQuantidade.getText());
+
+		// Busca valor no banco
 		BigDecimal custo = new ProdutoDao().valorProd(indexProd);
+
+		// busca no banco
 		BigDecimal mgLucro = margemLucro(indexProd);
-		String qtdDigitada = txtQuantidade.getText().trim();
+
+		int qtdDigitada = Integer.parseInt(txtQuantidade.getText().trim());
+
 		BigDecimal mg = custo.multiply(mgLucro);
+
 		BigDecimal vlrFinal = mg.divide(new BigDecimal(100.00)).add(custo)
 				.multiply(new BigDecimal(qtdDigitada));
 
@@ -361,7 +371,7 @@ public class CadVenda extends JFrame {
 		Cliente c = (Cliente) cbCliente.getSelectedItem();
 		Produto p = (Produto) cbProduto.getSelectedItem();
 		String horaData = horaVenda();
-		String qtdDigitada = txtQuantidade.getText().trim();
+		qtdDigitada = txtQuantidade.getText().trim();
 		int indexProd = cbProduto.getSelectedIndex();
 		if (indexProd == 0) {
 			indexProd = indexProd + 1;
@@ -395,6 +405,7 @@ public class CadVenda extends JFrame {
 		} else {
 
 			BigDecimal troco = vlrPagamento.subtract(vlrFinal);
+
 			JOptionPane.showMessageDialog(null, "Troco do cliente: "
 					+ NumberFormat.getCurrencyInstance().format(troco));
 
@@ -404,7 +415,15 @@ public class CadVenda extends JFrame {
 			limparModel();
 
 			limparCampos();
+
+			atualizaEstoque(indexProd, qtdDigitada);
 		}
+	}
+
+	private void atualizaEstoque(int p, String qtdDigitada) {
+
+		ProdutoContoller pd = new ProdutoContoller();
+		pd.atualizaEstoque(p, qtdDigitada);
 	}
 
 	private void limparModel() {

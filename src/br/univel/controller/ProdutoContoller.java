@@ -11,9 +11,9 @@ public class ProdutoContoller extends Produto {
 
 	// Classe controller, que irá controlar todas as movimentaçoes do produto,
 	// tanto cadastros novos, exclusao e edição
-	public void salvar(int codBarras, GeneroProd genero,
-			String descricao, int quantidade, Unidade unidade,
-			BigDecimal custo, BigDecimal margemLucro) {
+	public void salvar(int codBarras, GeneroProd genero, String descricao,
+			int quantidade, Unidade unidade, BigDecimal custo,
+			BigDecimal margemLucro) {
 
 		ProdutoContoller pp = new ProdutoContoller();
 
@@ -48,6 +48,13 @@ public class ProdutoContoller extends Produto {
 	public void deletar(int id) {
 
 		Produto pp = new ProdutoDao().deletar(id);
+
+	}
+
+	public void atualizaEstoque(int p, String qtdDigitada) {
+
+		ProdutoDao pd = new ProdutoDao();
+		pd.atualizaEstoque(p, qtdDigitada);
 
 	}
 

@@ -136,9 +136,9 @@ public class BuscaProduto extends JFrame {
 					Produto produtoSelecionado = ((BuscaProdutoModel) table
 							.getModel()).getProduto(selectedRow);
 
+					System.out.println(produtoSelecionado);
 					BuscaProduto.this.cadProduto
 							.carregaProdutoPesquisadoEmTela(produtoSelecionado);
-
 					fechaTela();
 				}
 			}

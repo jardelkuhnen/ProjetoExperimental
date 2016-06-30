@@ -1,56 +1,38 @@
 package br.univel.relatorio;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
-import org.w3c.dom.ls.LSInput;
-
-import br.univel.dao.ClienteDao;
-import br.univel.dao.ProdutoDao;
-import br.univel.dao.RelatorioDao;
 import br.univel.dao.VendaDao;
-import br.univel.enun.GeneroProd;
 import br.univel.model.BuscaVendaModel;
 import br.univel.model.Cliente;
 import br.univel.model.Produto;
-import br.univel.view.BuscaProduto;
-
-import javax.swing.JTable;
 
 public class RelVenda extends JFrame {
 
 	private JPanel contentPane;
-	static List<Cliente> listaCli = new ArrayList<Cliente>();
-	static List<Produto> listaProd = new ArrayList<Produto>();
 	private JTable table;
 	private BuscaVendaModel model = new BuscaVendaModel();
-	private RelVenda relVenda;
 
 	public void preencherListas() throws SQLException {
 
 		VendaDao vd = new VendaDao();
 
 		model.incluir(vd.buscarVendas());
-		model.fireTableDataChanged();
+		table.setModel(model);
 	}
 
 	/**
@@ -95,8 +77,6 @@ public class RelVenda extends JFrame {
 		gbc_table.gridy = 1;
 		contentPane.add(table, gbc_table);
 
-		configuraTela();
-
 		try {
 			preencherListas();
 
@@ -104,12 +84,6 @@ public class RelVenda extends JFrame {
 			JOptionPane.showMessageDialog(null, "Erro ao buscar dados!!!");
 			e.printStackTrace();
 		}
-
-	}
-
-	private void configuraTela() {
-
-		table.setModel(model);
 
 	}
 

@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.h2.command.ddl.AlterTableDropConstraint;
+
 import br.univel.model.Produto;
 
 public class ProdutoDao {
@@ -244,5 +246,84 @@ public class ProdutoDao {
 		}
 		return lista;
 
+	}
+
+	public List<Produto> buscarProduto() {
+
+		List<Produto> lista = new ArrayList<Produto>();
+		try {
+			con = Conexao.getConnection();
+
+			String sql = "SELECT * FROM PRODUTO";
+			PreparedStatement stmt = con.prepareStatement(sql);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Produto p = new Produto();
+				p.setDescricao(rs.getString("descricao"));
+				p.setCodBarras(rs.getInt("codBarras"));
+				p.setQuantidade(rs.getInt("quantidade"));
+				p.setCusto(rs.getBigDecimal("custo"));
+				p.setGenero(rs.getString("genero"));
+				p.setId(rs.getInt("id"));
+				p.setMargemLucro(rs.getBigDecimal("margemLucro"));
+
+				lista.add(p);
+			}
+
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao buscar produtos!");
+			e.printStackTrace();
+		}
+		return lista;
+
+	}
+
+	public void atualizaEstoque(int p, String qtdDigitada) {
+		int quantidadeinf = Integer.parseInt(qtdDigitada);
+		con = Conexao.getConnection();
+		int quantidadeEmEstoque = quantidadeEstoque(p);
+		int qtdAtual = quantidadeEmEstoque - quantidadeinf;
+
+		String sql = "UPDATE PRODUTO SET QUANTIDADE = ? WHERE ID = ?;";
+
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, qtdAtual);
+			stmt.setInt(2, p);
+
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		int a = quantidadeEstoque(p);
+		System.out.println(a);
+	}
+
+	private int quantidadeEstoque(int p) {
+
+		con = Conexao.getConnection();
+
+		String sql = "SELECT QUANTIDADE FROM PRODUTO WHERE ID = ?";
+		ResultSet rs;
+		int quantidade = 0;
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, p);
+
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				quantidade = Integer.parseInt(rs.getString("QUANTIDADE"));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return quantidade;
 	}
 }
