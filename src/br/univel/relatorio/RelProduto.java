@@ -56,20 +56,10 @@ public class RelProduto extends JFrame {
 		});
 	}
 
-	public void preencherLista() {
-
-		ProdutoDao pd = new ProdutoDao();
-
-		model.incluir(pd.buscarProduto(""));
-		table.setModel(model);
-
-	}
-
 	/**
 	 * Create the frame.
 	 */
 	public RelProduto() {
-
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -89,13 +79,24 @@ public class RelProduto extends JFrame {
 
 		table = new JTable();
 		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridheight = 5;
+		gbc_table.gridheight = 6;
 		gbc_table.gridwidth = 4;
 		gbc_table.insets = new Insets(0, 0, 5, 5);
 		gbc_table.fill = GridBagConstraints.BOTH;
 		gbc_table.gridx = 0;
-		gbc_table.gridy = 1;
+		gbc_table.gridy = 0;
 		contentPane.add(table, gbc_table);
+
+		prencherLista();
+
+	}
+
+	private void prencherLista() {
+
+		ProdutoDao pd = new ProdutoDao();
+
+		model.incluir(pd.buscarProduto());
+		table.setModel(model);
 
 	}
 

@@ -42,6 +42,7 @@ public class RelVenda extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 343);
 		contentPane = new JPanel();
+		setTitle("Relatório de Vendas");
 		contentPane.setToolTipText("");
 		contentPane
 				.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -56,25 +57,13 @@ public class RelVenda extends JFrame {
 				0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
-		JLabel lblRelatrioDeClientes = new JLabel("Relat\u00F3rio de Vendas");
-		lblRelatrioDeClientes.setForeground(new Color(0, 0, 128));
-		lblRelatrioDeClientes.setFont(new Font("Tahoma", Font.BOLD
-				| Font.ITALIC, 18));
-		GridBagConstraints gbc_lblRelatrioDeClientes = new GridBagConstraints();
-		gbc_lblRelatrioDeClientes.anchor = GridBagConstraints.NORTH;
-		gbc_lblRelatrioDeClientes.insets = new Insets(0, 0, 5, 0);
-		gbc_lblRelatrioDeClientes.gridwidth = 6;
-		gbc_lblRelatrioDeClientes.gridx = 0;
-		gbc_lblRelatrioDeClientes.gridy = 0;
-		contentPane.add(lblRelatrioDeClientes, gbc_lblRelatrioDeClientes);
-
 		table = new JTable();
 		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridheight = 9;
+		gbc_table.gridheight = 10;
 		gbc_table.gridwidth = 6;
 		gbc_table.fill = GridBagConstraints.BOTH;
 		gbc_table.gridx = 0;
-		gbc_table.gridy = 1;
+		gbc_table.gridy = 0;
 		contentPane.add(table, gbc_table);
 
 		try {

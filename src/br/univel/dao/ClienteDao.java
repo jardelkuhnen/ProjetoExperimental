@@ -78,6 +78,29 @@ public class ClienteDao {
 		return lista;
 	}
 
+	public List<Cliente> listarCliente() throws SQLException {
+
+		String sql = "Select nome from Cliente";
+		List<Cliente> lista = new ArrayList<Cliente>();
+
+		con = Conexao.getConnection();
+
+		PreparedStatement stmt = con.prepareStatement(sql);
+
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+
+			Cliente c = new Cliente();
+
+			c.setNome(rs.getString("nome"));
+
+			lista.add(c);
+		}
+
+		return lista;
+	}
+
 	public void editar(Cliente c) {
 		con = Conexao.getConnection();
 
