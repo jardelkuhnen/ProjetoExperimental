@@ -36,23 +36,6 @@ public class RelCliente extends JFrame {
 	private BuscaClienteModel model = new BuscaClienteModel();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					RelCliente rel = new RelCliente();
-					rel.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public RelCliente() {
@@ -88,13 +71,14 @@ public class RelCliente extends JFrame {
 
 	private void prencherTela() {
 
+		ClienteDao dao = new ClienteDao();
 		try {
-			ClienteDao dao = new ClienteDao();
 			model.incluir(dao.listarCliente());
-			table.setModel(model);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		table.setModel(model);
 
 	}
 

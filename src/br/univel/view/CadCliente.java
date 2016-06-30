@@ -55,7 +55,13 @@ public class CadCliente extends JFrame {
 	private JComboBox cbEstado;
 	private JComboBox cbGenero;
 
+	public static void main(String[] args) {
+		CadCliente cd = new CadCliente();
+		cd.setVisible(true);
+	}
+
 	public CadCliente() {
+
 		setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		setTitle("Cadastro de Clientes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

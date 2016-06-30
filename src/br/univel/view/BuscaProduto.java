@@ -36,7 +36,6 @@ import java.awt.Component;
 public class BuscaProduto extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtProduto;
 	private JTable table;
 	private BuscaProdutoModel model = new BuscaProdutoModel();
 	private CadProduto cadProduto;
@@ -61,24 +60,13 @@ public class BuscaProduto extends JFrame {
 				Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
-		txtProduto = new JTextField();
-		GridBagConstraints gbc_txtProduto = new GridBagConstraints();
-		gbc_txtProduto.insets = new Insets(0, 0, 5, 0);
-		gbc_txtProduto.anchor = GridBagConstraints.NORTH;
-		gbc_txtProduto.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtProduto.gridx = 0;
-		gbc_txtProduto.gridy = 0;
-		contentPane.add(txtProduto, gbc_txtProduto);
-		txtProduto.setColumns(10);
-
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				ProdutoDao pd = new ProdutoDao();
 
-				model.incluir(pd.buscarProduto(txtProduto.getText()
-						.toUpperCase()));
+				model.incluir(pd.buscarProduto(""));
 				table.setModel(model);
 
 			}
@@ -99,13 +87,11 @@ public class BuscaProduto extends JFrame {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] {
-				txtProduto, btnBuscar, table }));
+
+		addMouseClickedTable();
 
 		// Configura o layout da tela
 		configuraTela();
-
-		addMouseClickedTable();
 	}
 
 	private void addMouseClickedTable() {
@@ -136,7 +122,6 @@ public class BuscaProduto extends JFrame {
 					Produto produtoSelecionado = ((BuscaProdutoModel) table
 							.getModel()).getProduto(selectedRow);
 
-					System.out.println(produtoSelecionado);
 					BuscaProduto.this.cadProduto
 							.carregaProdutoPesquisadoEmTela(produtoSelecionado);
 					fechaTela();

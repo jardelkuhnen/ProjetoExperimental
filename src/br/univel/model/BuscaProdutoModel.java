@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class BuscaProdutoModel extends AbstractTableModel {
 
-	List<Produto> listaProd = new ArrayList<Produto>();
+	List<Produto> listaProd = new ArrayList<>();
 
 	@Override
 	public int getColumnCount() {

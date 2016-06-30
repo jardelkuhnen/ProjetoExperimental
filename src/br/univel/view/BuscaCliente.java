@@ -1,6 +1,5 @@
 package br.univel.view;
 
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -8,13 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.univel.dao.ClienteDao;
@@ -24,14 +23,9 @@ import br.univel.model.Cliente;
 public class BuscaCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNome;
 	private JTable table;
 	private BuscaClienteModel model = new BuscaClienteModel();
 	private CadCliente cadCliente;
-
-	public BuscaCliente() {
-		setTitle("Busca Cliente");
-	}
 
 	/**
 	 * Create the frame.
@@ -39,6 +33,7 @@ public class BuscaCliente extends JFrame {
 	 * @param cadCliente
 	 */
 	public BuscaCliente(CadCliente cadCliente) {
+		setTitle("Busca Cliente");
 		this.cadCliente = cadCliente;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -53,22 +48,12 @@ public class BuscaCliente extends JFrame {
 				Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
-		txtNome = new JTextField();
-		GridBagConstraints gbc_txtNome = new GridBagConstraints();
-		gbc_txtNome.insets = new Insets(0, 0, 5, 0);
-		gbc_txtNome.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNome.gridx = 0;
-		gbc_txtNome.gridy = 0;
-		contentPane.add(txtNome, gbc_txtNome);
-		txtNome.setColumns(10);
-
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ClienteDao dao = new ClienteDao();
-				String nomeCliente = txtNome.getText().toUpperCase();
 
-				model.incluir(dao.listarCliente(nomeCliente));
+				model.incluir(dao.listarCliente(""));
 				table.setModel(model);
 			}
 		});

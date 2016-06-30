@@ -113,6 +113,18 @@ public class CadProduto extends JFrame {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 
 		txtCodBarras = new JTextField();
+		txtCodBarras.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+				if (e.getKeyCode() == KeyEvent.VK_F2) {
+					abrirTeladePesquisa();
+				}
+				super.keyPressed(e);
+			}
+
+		});
 		GridBagConstraints gbc_txtCodBarras = new GridBagConstraints();
 		gbc_txtCodBarras.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtCodBarras.insets = new Insets(0, 0, 5, 5);

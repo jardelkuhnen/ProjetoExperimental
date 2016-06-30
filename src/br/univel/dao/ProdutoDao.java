@@ -227,8 +227,8 @@ public class ProdutoDao {
 
 			ResultSet rs = stmt.executeQuery();
 
+			Produto p = new Produto();
 			while (rs.next()) {
-				Produto p = new Produto();
 				p.setDescricao(rs.getString("descricao"));
 				p.setCodBarras(rs.getInt("codBarras"));
 				p.setQuantidade(rs.getInt("quantidade"));

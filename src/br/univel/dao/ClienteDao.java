@@ -26,8 +26,7 @@ public class ClienteDao {
 
 		try {
 			PreparedStatement stmt;
-			stmt = con.prepareStatement(sql,
-					java.sql.Statement.RETURN_GENERATED_KEYS);
+			stmt = con.prepareStatement(sql);
 			stmt.setString(1, c.getNome().toUpperCase());
 			stmt.setString(2, c.getTelefone());
 			stmt.setString(3, c.getEndereco().toUpperCase());
@@ -155,13 +154,8 @@ public class ClienteDao {
 		List<Cliente> lista = new ArrayList<>();
 
 		try {
-			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM CLIENTE WHERE NOME LIKE ?");
-			PreparedStatement stmt;
-
-			stmt = con.prepareStatement(sql.toString());
-
-			stmt.setString(1, "%" + nome.toUpperCase() + "%");
+			String sql = "SELECT * FROM CLIENTE";
+			PreparedStatement stmt = con.prepareStatement(sql);
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -180,6 +174,7 @@ public class ClienteDao {
 			}
 			return lista;
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao buscar clientes!");
 			e.printStackTrace();
 		}
 		return null;
