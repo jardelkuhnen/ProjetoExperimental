@@ -258,8 +258,8 @@ public class ProdutoDao {
 
 			ResultSet rs = stmt.executeQuery();
 
-			Produto p = new Produto();
 			while (rs.next()) {
+				Produto p = new Produto();
 				p.setId(rs.getInt("ID"));
 				p.setDescricao(rs.getString("descricao"));
 				p.setCodBarras(rs.getInt("codBarras"));
@@ -299,7 +299,6 @@ public class ProdutoDao {
 		}
 
 		int a = quantidadeEstoque(p);
-		System.out.println(a);
 	}
 
 	private int quantidadeEstoque(int p) {

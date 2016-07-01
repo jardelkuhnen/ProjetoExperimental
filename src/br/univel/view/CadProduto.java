@@ -386,10 +386,10 @@ public class CadProduto extends JFrame {
 	}
 
 	public void carregaProdutoPesquisadoEmTela(Produto produto) {
-		txtCodBarras.setText(String.valueOf(produto.getCodBarras()));
-		txtId.setText(String.valueOf(produto.getId()));
-		txtCusto.setText((produto.getCusto()).toString());
-		txtDescricao.setText(produto.getDescricao());
-		txtQuantidade.setText(String.valueOf(produto.getQuantidade()));
+//		txtCodBarras.setText(String.valueOf(produto.getCodBarras()));
+//		txtId.setText(String.valueOf(produto.getId()));
+//		txtCusto.setText((produto.getCusto()).toString());
+//		txtDescricao.setText(produto.getDescricao());
+//		txtQuantidade.setText(String.valueOf(produto.getQuantidade()));
 	}
 }

@@ -76,22 +76,17 @@ public class CadVenda extends JFrame {
 		try {
 			preencheLista();
 		} catch (SQLException e2) {
-			JOptionPane.showMessageDialog(null,
-					"ERRO: Problemas ao preencher lista de produtos");
+			JOptionPane.showMessageDialog(null, "ERRO: Problemas ao preencher lista de produtos");
 			e2.printStackTrace();
 		}
 
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 96, 25, 33, 37, 97, 50, 80, 52,
-				77, 0 };
-		gbl_panel.rowHeights = new int[] { 30, 20, 20, 20, 20, 23, 171, 20, 20,
-				20, 23, 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel.columnWidths = new int[] { 96, 25, 33, 37, 97, 50, 80, 52, 77, 0 };
+		gbl_panel.rowHeights = new int[] { 30, 20, 20, 20, 20, 23, 171, 20, 20, 20, 23, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
 		JLabel lblvendas = new JLabel("***Vendas***");
@@ -288,10 +283,8 @@ public class CadVenda extends JFrame {
 		gbc_btnCancelar.gridx = 7;
 		gbc_btnCancelar.gridy = 9;
 		panel.add(btnCancelar, gbc_btnCancelar);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(
-				new Component[] { txtNNota, cbCliente, cbProduto,
-						txtQuantidade, btnAdicionar, txtVlrTotal,
-						txtVlrPagamento, btnCancelar, btnGravar }));
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { txtNNota, cbCliente, cbProduto,
+				txtQuantidade, btnAdicionar, txtVlrTotal, txtVlrPagamento, btnCancelar, btnGravar }));
 
 	}
 
@@ -348,8 +341,7 @@ public class CadVenda extends JFrame {
 
 		BigDecimal mg = custo.multiply(mgLucro);
 
-		BigDecimal vlrFinal = mg.divide(new BigDecimal(100.00)).add(custo)
-				.multiply(new BigDecimal(qtdDigitada));
+		BigDecimal vlrFinal = mg.divide(new BigDecimal(100.00)).add(custo).multiply(new BigDecimal(qtdDigitada));
 
 		Produto p = new Produto();
 		p.setDescricao(produto);
@@ -357,8 +349,7 @@ public class CadVenda extends JFrame {
 		p.setCusto(vlrFinal);
 		model.incluir(p);
 		listaVenda.add(p);
-		txtVlrTotal.setText(NumberFormat.getCurrencyInstance()
-				.format(p.getCusto()).toString());
+		txtVlrTotal.setText(NumberFormat.getCurrencyInstance().format(p.getCusto()).toString());
 
 	}
 
@@ -368,15 +359,15 @@ public class CadVenda extends JFrame {
 		VendaController vd = new VendaController();
 
 		Cliente c = (Cliente) cbCliente.getSelectedItem();
-		
+
 		Produto p = (Produto) cbProduto.getSelectedItem();
-		
+
 		String horaData = horaVenda();
-		
+
 		qtdDigitada = txtQuantidade.getText().trim();
-		
+
 		int indexProd = cbProduto.getSelectedIndex();
-		
+
 		if (indexProd == 0) {
 			indexProd = indexProd + 1;
 		}
@@ -393,29 +384,25 @@ public class CadVenda extends JFrame {
 		// valor final da venda
 		BigDecimal mg = vlrProd.multiply(mgLucro);
 		BigDecimal vlrFinal = mg.divide(new BigDecimal(100.00)).add(vlrProd);
-		BigDecimal vlrPagamento = new BigDecimal(txtVlrPagamento.getText()
-				.trim());
+		BigDecimal vlrPagamento = new BigDecimal(txtVlrPagamento.getText().trim());
 		if (qtdDigitada.isEmpty()) {
 			qtdDigitada = "0";
 		}
 
 		// ------------------------------------troco
 
-		if (vlrFinal.compareTo(vlrFinal) > vlrPagamento.compareTo(vlrPagamento)
-				|| vlrPagamento.equals("")) {
-			JOptionPane.showMessageDialog(null,
-					"Valor de pagamento menor que o valor total da venda!!!");
+		if (vlrFinal.compareTo(vlrFinal) > vlrPagamento.compareTo(vlrPagamento) || vlrPagamento.equals("")) {
+			JOptionPane.showMessageDialog(null, "Valor de pagamento menor que o valor total da venda!!!");
 
 		} else {
 
 			BigDecimal troco = vlrPagamento.subtract(vlrFinal);
 
-			JOptionPane.showMessageDialog(null, "Troco do cliente: "
-					+ NumberFormat.getCurrencyInstance().format(troco));
+			JOptionPane.showMessageDialog(null,
+					"Troco do cliente: " + NumberFormat.getCurrencyInstance().format(troco));
 
-			vd.gravarVenda(Integer.parseInt(txtNNota.getText().trim()),
-					c.toString(), p.toString(), qtd, vlrFinal, vlrPagamento,
-					troco, horaData);
+			vd.gravarVenda(Integer.parseInt(txtNNota.getText().trim()), c.toString(), p.toString(), qtd, vlrFinal,
+					vlrPagamento, troco, horaData);
 			limparModel();
 
 			limparCampos();

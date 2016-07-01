@@ -44,12 +44,10 @@ public class ClienteDao {
 			c.setId(id);
 			stmt.close();
 
-			JOptionPane.showMessageDialog(null,
-					"Cliente cadastrado com sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!!!");
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null,
-					"ERRO: Problemas ao salvar cliente!!!");
+			JOptionPane.showMessageDialog(null, "ERRO: Problemas ao salvar cliente!!!");
 			e.printStackTrace();
 		}
 
@@ -88,8 +86,8 @@ public class ClienteDao {
 
 		ResultSet rs = stmt.executeQuery();
 
-		Cliente c = new Cliente();
 		while (rs.next()) {
+			Cliente c = new Cliente();
 
 			c.setNome(rs.getString("nome"));
 			c.setId(rs.getInt("ID"));
@@ -120,8 +118,7 @@ public class ClienteDao {
 
 			stmt.execute();
 			stmt.close();
-			JOptionPane.showMessageDialog(null,
-					"Cliente editado com sucesso !!!");
+			JOptionPane.showMessageDialog(null, "Cliente editado com sucesso !!!");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao editar cliente !!!");
 			e.printStackTrace();
@@ -138,12 +135,10 @@ public class ClienteDao {
 			stmt = con.prepareStatement("DELETE FROM CLIENTE WHERE ID = ?");
 			stmt.setInt(1, id);
 			int rs = stmt.executeUpdate();
-			JOptionPane.showMessageDialog(null,
-					"Cliente apagado com sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Cliente apagado com sucesso!!!");
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null,
-					"ERRO: Problemas ao apagar cliente!!!");
+			JOptionPane.showMessageDialog(null, "ERRO: Problemas ao apagar cliente!!!");
 			e.printStackTrace();
 		}
 
@@ -161,9 +156,8 @@ public class ClienteDao {
 
 			ResultSet rs = stmt.executeQuery();
 
-			Cliente c = new Cliente();
 			while (rs.next()) {
-
+				Cliente c = new Cliente();
 				c.setId(rs.getInt("id"));
 				c.setNome(rs.getString("nome"));
 				c.setTelefone(rs.getString("telefone"));

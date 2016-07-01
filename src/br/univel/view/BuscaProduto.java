@@ -57,8 +57,7 @@ public class BuscaProduto extends JFrame {
 		gbl_contentPane.columnWidths = new int[] { 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 1.0,
-				Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JButton btnBuscar = new JButton("Buscar");
@@ -120,21 +119,9 @@ public class BuscaProduto extends JFrame {
 
 					int selectedRow = table.getSelectedRow();
 
-					Produto produtoSelecionado = ((BuscaProdutoModel) table
-							.getModel()).getProduto(selectedRow);
+					Produto produtoSelecionado = ((BuscaProdutoModel) table.getModel()).getProduto(selectedRow);
 
-					System.out.println(produtoSelecionado.getCodBarras()
-							+ " codBarra");
-					System.out.println(produtoSelecionado.getDescricao()
-							+ " descri");
-					System.out.println(produtoSelecionado.getCusto() + " custo");
-					System.out.println(produtoSelecionado.getId() + " id");
-					System.out.println(produtoSelecionado.getGenero()
-							+ " genero");
-					System.out.println(produtoSelecionado.getUnidade()
-							+ " unidade");
-					BuscaProduto.this.cadProduto
-							.carregaProdutoPesquisadoEmTela(produtoSelecionado);
+					BuscaProduto.this.cadProduto.carregaProdutoPesquisadoEmTela(produtoSelecionado);
 					fechaTela();
 				}
 			}
