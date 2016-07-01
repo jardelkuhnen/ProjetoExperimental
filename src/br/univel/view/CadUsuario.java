@@ -52,6 +52,7 @@ public class CadUsuario extends JFrame {
 	private JTextField txtUsuario;
 
 	public CadUsuario() {
+		setResizable(false);
 		setTitle("Cadastro de Usu\u00E1rios");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 414, 334);

@@ -1,39 +1,24 @@
 package br.univel.relatorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.GridBagLayout;
-
-import javax.swing.JLabel;
-
-import java.awt.GridBagConstraints;
-import java.awt.Font;
-import java.awt.Insets;
-
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
 import br.univel.dao.ClienteDao;
-import br.univel.enun.Uf;
 import br.univel.model.BuscaClienteModel;
-
-import java.awt.Color;
-import java.sql.SQLException;
-
-import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class RelCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private BuscaClienteModel model = new BuscaClienteModel();
+	private JTable table;
 
 	/**
 	 * Create the frame.
@@ -56,16 +41,21 @@ public class RelCliente extends JFrame {
 				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
-		table = new JTable();
-		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridwidth = 3;
-		gbc_table.gridheight = 6;
-		gbc_table.insets = new Insets(0, 0, 5, 5);
-		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 0;
-		gbc_table.gridy = 0;
-		contentPane.add(table, gbc_table);
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 6;
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 0;
+		contentPane.add(scrollPane, gbc_scrollPane);
 
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
+		table.setModel(model);
+		
 		prencherTela();
 	}
 
@@ -75,10 +65,8 @@ public class RelCliente extends JFrame {
 		try {
 			model.incluir(dao.listarCliente());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		table.setModel(model);
 
 	}
 

@@ -1,44 +1,24 @@
 package br.univel.relatorio;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.GridBagLayout;
-
-import javax.swing.JLabel;
-
-import java.awt.GridBagConstraints;
-import java.awt.Font;
-import java.awt.Insets;
-
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.TableModel;
 
 import br.univel.dao.ProdutoDao;
-import br.univel.enun.GeneroProd;
 import br.univel.model.BuscaProdutoModel;
-import br.univel.model.Produto;
-
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class RelProduto extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private BuscaProdutoModel model = new BuscaProdutoModel();
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -73,19 +53,24 @@ public class RelProduto extends JFrame {
 		gbl_contentPane.rowHeights = new int[] { 35, 22, 35, 23, 35, 23, 0 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, 0.0, 0.0, 1.0,
 				Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0,
+		gbl_contentPane.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 0.0,
 				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 6;
+		gbc_scrollPane.gridwidth = 4;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 0;
+		contentPane.add(scrollPane, gbc_scrollPane);
+
 		table = new JTable();
-		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridheight = 6;
-		gbc_table.gridwidth = 4;
-		gbc_table.insets = new Insets(0, 0, 5, 5);
-		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 0;
-		gbc_table.gridy = 0;
-		contentPane.add(table, gbc_table);
+		scrollPane.setViewportView(table);
+
+		table.setModel(model);
 
 		prencherLista();
 
@@ -96,7 +81,6 @@ public class RelProduto extends JFrame {
 		ProdutoDao pd = new ProdutoDao();
 
 		model.incluir(pd.buscarProduto());
-		table.setModel(model);
 
 	}
 

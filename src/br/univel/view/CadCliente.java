@@ -61,7 +61,7 @@ public class CadCliente extends JFrame {
 	}
 
 	public CadCliente() {
-
+		setResizable(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		setTitle("Cadastro de Clientes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

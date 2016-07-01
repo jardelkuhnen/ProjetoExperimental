@@ -61,9 +61,11 @@ public class CadVenda extends JFrame {
 	private JTable table;
 	private JTextField txtProduto;
 	private String qtdDigitada = "";
+	private CadVenda cadVenda;
 
 	public CadVenda() {
 		setTitle("Venda");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 582, 461);
 		contentPane = new JPanel();
@@ -332,20 +334,17 @@ public class CadVenda extends JFrame {
 	public void adicionarProdutos() {
 
 		String produto = cbProduto.getSelectedItem().toString();
-		int indexProd = cbProduto.getSelectedIndex();
-		if (indexProd == 0) {
-			indexProd = indexProd + 1;
-		}
+		int indexProd = cbProduto.getSelectedIndex() + 1;
 
-		int qtd = Integer.parseInt(txtQuantidade.getText());
+		int qtd = Integer.parseInt(txtQuantidade.getText().trim());
 
 		// Busca valor no banco
-		BigDecimal custo = new ProdutoDao().valorProd(indexProd);
+		BigDecimal custo = new ProdutoDao().valorProd(produto);
 
 		// busca no banco
 		BigDecimal mgLucro = margemLucro(indexProd);
 
-		int qtdDigitada = Integer.parseInt(txtQuantidade.getText().trim());
+		int qtdDigitada = qtd;
 
 		BigDecimal mg = custo.multiply(mgLucro);
 
@@ -369,10 +368,15 @@ public class CadVenda extends JFrame {
 		VendaController vd = new VendaController();
 
 		Cliente c = (Cliente) cbCliente.getSelectedItem();
+		
 		Produto p = (Produto) cbProduto.getSelectedItem();
+		
 		String horaData = horaVenda();
+		
 		qtdDigitada = txtQuantidade.getText().trim();
+		
 		int indexProd = cbProduto.getSelectedIndex();
+		
 		if (indexProd == 0) {
 			indexProd = indexProd + 1;
 		}

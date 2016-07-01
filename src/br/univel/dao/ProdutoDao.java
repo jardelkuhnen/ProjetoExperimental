@@ -122,21 +122,20 @@ public class ProdutoDao {
 
 	}
 
-	public BigDecimal valorProd(int vlrProduto) {
+	public BigDecimal valorProd(String produto) {
 
 		con = Conexao.getConnection();
 
-		String sql = "SELECT CUSTO FROM PRODUTO WHERE ID = ? ";
+		String sql = "SELECT CUSTO FROM PRODUTO WHERE DESCRICAO = ? ";
 
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, vlrProduto);
+			stmt.setString(1, produto);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				return rs.getBigDecimal("CUSTO");
 			}
-			System.out.println(rs.getBigDecimal("CUSTO"));
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,
 					"Erro ao buscar valor do produto!");
@@ -259,14 +258,14 @@ public class ProdutoDao {
 
 			ResultSet rs = stmt.executeQuery();
 
+			Produto p = new Produto();
 			while (rs.next()) {
-				Produto p = new Produto();
+				p.setId(rs.getInt("ID"));
 				p.setDescricao(rs.getString("descricao"));
 				p.setCodBarras(rs.getInt("codBarras"));
 				p.setQuantidade(rs.getInt("quantidade"));
 				p.setCusto(rs.getBigDecimal("custo"));
 				p.setGenero(rs.getString("genero"));
-				p.setId(rs.getInt("id"));
 				p.setMargemLucro(rs.getBigDecimal("margemLucro"));
 
 				lista.add(p);

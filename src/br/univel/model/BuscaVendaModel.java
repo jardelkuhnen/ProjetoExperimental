@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class BuscaVendaModel extends AbstractTableModel {
 
-	List<Venda> listaVenda = new ArrayList<Venda>();
+	List<Venda> listaVenda = new ArrayList<>();
 
 	@Override
 	public int getColumnCount() {
@@ -47,10 +47,9 @@ public class BuscaVendaModel extends AbstractTableModel {
 		default:
 			break;
 		}
-		return null;
+		return "";
 	}
 
-	
 	@Override
 	public Object getValueAt(int row, int col) {
 
@@ -75,9 +74,8 @@ public class BuscaVendaModel extends AbstractTableModel {
 		default:
 			break;
 		}
-		return "Erro em colunas";
+		return "";
 	}
-
 
 	public Venda getvenda(int selectedRow) {
 

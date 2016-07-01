@@ -79,7 +79,7 @@ public class ClienteDao {
 
 	public List<Cliente> listarCliente() throws SQLException {
 
-		String sql = "Select nome from Cliente";
+		String sql = "Select * from Cliente";
 		List<Cliente> lista = new ArrayList<Cliente>();
 
 		con = Conexao.getConnection();
@@ -88,11 +88,13 @@ public class ClienteDao {
 
 		ResultSet rs = stmt.executeQuery();
 
+		Cliente c = new Cliente();
 		while (rs.next()) {
 
-			Cliente c = new Cliente();
-
 			c.setNome(rs.getString("nome"));
+			c.setId(rs.getInt("ID"));
+			c.setTelefone(rs.getString("telefone"));
+			c.setEndereco(rs.getString("endereco"));
 
 			lista.add(c);
 		}
@@ -149,7 +151,7 @@ public class ClienteDao {
 
 	}
 
-	public List<Cliente> listarCliente(String nome) {
+	public List<Cliente> listarCliente(String cliente) {
 		con = Conexao.getConnection();
 		List<Cliente> lista = new ArrayList<>();
 

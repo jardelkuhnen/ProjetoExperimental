@@ -33,6 +33,7 @@ public class BuscaCliente extends JFrame {
 	 * @param cadCliente
 	 */
 	public BuscaCliente(CadCliente cadCliente) {
+		setResizable(false);
 		setTitle("Busca Cliente");
 		this.cadCliente = cadCliente;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

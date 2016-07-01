@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class BuscaClienteModel extends AbstractTableModel {
-	List<Cliente> lista = new ArrayList<>();
+	List<Cliente> lista = new ArrayList<Cliente>();
 
 	@Override
 	public int getColumnCount() {

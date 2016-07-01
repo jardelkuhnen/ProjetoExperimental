@@ -2,7 +2,10 @@ package br.univel.enun;
 
 public enum Unidade {
 
-	UN("Unidade"), KG("Kilo"), PCT("Pacote"), CX("Caixa");
+	UN("Unidade"), 
+	KG("Kilo"), 
+	PCT("Pacote"), 
+	CX("Caixa");
 
 	private String unidade;
 

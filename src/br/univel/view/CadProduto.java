@@ -51,6 +51,7 @@ public class CadProduto extends JFrame {
 	private JTextField txtQuantidade;
 
 	public CadProduto() {
+		setResizable(false);
 		setTitle("Cadastro de Produtos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 520, 331);
@@ -196,10 +197,6 @@ public class CadProduto extends JFrame {
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
 		cbGenero = new JComboBox(GeneroProd.values());
-		cbGenero.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		GridBagConstraints gbc_cbGenero = new GridBagConstraints();
 		gbc_cbGenero.anchor = GridBagConstraints.WEST;
 		gbc_cbGenero.insets = new Insets(0, 0, 5, 5);
@@ -389,11 +386,10 @@ public class CadProduto extends JFrame {
 	}
 
 	public void carregaProdutoPesquisadoEmTela(Produto produto) {
-		txtCusto.setText((produto.getCusto()).toString());
-		txtDescricao.setText(produto.getDescricao());
-		txtMargemLucro.setText(String.valueOf(produto.getMargemLucro()));
 		txtCodBarras.setText(String.valueOf(produto.getCodBarras()));
 		txtId.setText(String.valueOf(produto.getId()));
+		txtCusto.setText((produto.getCusto()).toString());
+		txtDescricao.setText(produto.getDescricao());
 		txtQuantidade.setText(String.valueOf(produto.getQuantidade()));
 	}
 }

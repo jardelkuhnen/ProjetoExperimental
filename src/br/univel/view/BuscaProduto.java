@@ -46,6 +46,7 @@ public class BuscaProduto extends JFrame {
 
 	public BuscaProduto() {
 		setTitle("Busca Produto");
+		setResizable(false);
 		this.cadProduto = cadProduto;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -66,7 +67,7 @@ public class BuscaProduto extends JFrame {
 
 				ProdutoDao pd = new ProdutoDao();
 
-				model.incluir(pd.buscarProduto(""));
+				model.incluir(pd.buscarProduto());
 				table.setModel(model);
 
 			}
@@ -122,6 +123,16 @@ public class BuscaProduto extends JFrame {
 					Produto produtoSelecionado = ((BuscaProdutoModel) table
 							.getModel()).getProduto(selectedRow);
 
+					System.out.println(produtoSelecionado.getCodBarras()
+							+ " codBarra");
+					System.out.println(produtoSelecionado.getDescricao()
+							+ " descri");
+					System.out.println(produtoSelecionado.getCusto() + " custo");
+					System.out.println(produtoSelecionado.getId() + " id");
+					System.out.println(produtoSelecionado.getGenero()
+							+ " genero");
+					System.out.println(produtoSelecionado.getUnidade()
+							+ " unidade");
 					BuscaProduto.this.cadProduto
 							.carregaProdutoPesquisadoEmTela(produtoSelecionado);
 					fechaTela();
